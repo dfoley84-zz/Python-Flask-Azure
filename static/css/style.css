@@ -1,0 +1,60 @@
+.btn {
+    background-color: transparent; /* Blue background */
+    border: none; /* Remove borders */
+    color: grey; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+
+  .btn:hover {
+    background-color: transparent;
+    border: none; /* Remove borders */
+    color:gainsboro; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+
+  body {
+    padding-top: 56px;
+    background-color: #fff;
+  
+  }
+  
+  .navbar-brand {
+      padding-top: 0rem;
+      padding-bottom: 0rem;
+  }
+  
+  .card-img-top {
+    object-fit: cover;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  .monospace {
+    font-family: "Lucida Console", Courier, monospace;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #fff;
+    font-family: "Dosis", sans-serif;
+    font-size: 100px;
+    margin-bottom: 0px;
+    font-weight: 800;
+  }
+  
+  h3 {
+    text-align: center;
+    color: #fff;
+    font-size: 19px;
+    line-height: 23px;
+    max-width: 330px;
+    margin: 0px auto 30px auto;
+    font-family: "Dosis", sans-serif;
+    font-weight: 400;
+  }
