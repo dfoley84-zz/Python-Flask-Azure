@@ -31,12 +31,27 @@
     </div>
   </nav>
 
-
-<div id="loggedInUser">
-
-
-
+  <form method="POST" action="{{ url_for('me') }}">
+  <div class="col-lg-9">
+    <div class="row my-3 card-wrapper">
+      <div class="col-lg-8 col-md-8 mb-8">
+    <table class="table table-hover table-dark">
+      <br>
+      {% for row in vcentercategories %}
+      <tr>
+      {% for d in row %}
+          <td>{{ d }}</td>
+          <td>
+            {{ form.submit(class="btn btn-primary form-control form-control-lg") }}
+          </td>
+      {% endfor %}
+      </tr>
+  {% endfor %}
+    </table>
   </div>
+  </div>
+  </div>
+
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
