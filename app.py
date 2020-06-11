@@ -1,11 +1,16 @@
-from flask import Flask, redirect, url_for, session, request, jsonify, render_template
+from flask import Flask, redirect, url_for, g, session, request, jsonify, render_template
 from flask_oauthlib.client import OAuth, OAuthException
+from flask_wtf import FlaskForm
+from flask_table import Table, Col
+from wtforms import SubmitField
 from logging import Logger
 import uuid
 import os
 import requests
 import sys
 import pypyodbc
+
+
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'secretkey'
@@ -72,26 +77,47 @@ def authorized():
 	session['microsoft_token'] = (response['access_token'], '')
 	return redirect(url_for('me'))
 
+
 '''
-If User has a Session Token: LoggedIn page will display
+class Results(Table):
+	vcenter = Col('vCenter')
+'''
+
+class loginForm(FlaskForm):
+      submit = SubmitField("Delete")
+
+
+'''
+If User has a Session Token: LoggedIn page will display 
 For the user.
 '''
-@app.route('/loggedin')
+@app.route('/loggedin', methods = ['POST', 'GET'])
 def me():
+	form = loginForm()
 	displayName = microsoft.get('me?$select=displayName')
 	Email = microsoft.get('me?$select=mail')
-	userName = displayName.data['displayName'] #Getting Username from dict
-	userEmail = Email.data['mail'] # Getting Email from dict.
+	userName = displayName.data['displayName'] 
+	userEmail = Email.data['mail']
 
 	'''
 	Using the users email Address to split from '@'
 	Assigning the first Element of users email to login_id
 	'''
 	userid = userEmail.split("@")
-	login_id = userid[0]
-	return render_template('loggedin.html', userName=str(userName))
+	#login_id = userid[0]
+
+	conn = get_db()
+	query = ''
+	conn.execute(query)
+	vcentercategories = conn.fetchall()
 
 
+	if request.method == "POST":
+		print("Testing post") 
+
+	return render_template('loggedin.html', userName=str(userName), vcentercategories=vcentercategories, form=form)
+
+	
 #Getting Session Token
 @microsoft.tokengetter
 def get_microsoft_oauth_token():
